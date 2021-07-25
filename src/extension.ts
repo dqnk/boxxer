@@ -164,6 +164,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated, also when editor is closed
 export function deactivate() {
+  //close current container (might be unnecessary or even in the way of developers)
   const { exec } = require("child_process");
   var firstWord;
   exec(
