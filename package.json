@@ -32,7 +32,7 @@
         "title": "Boxxer: Build With Specified Folder"
       },
       {
-        "command": "boxxer.openFolderInContainer",
+        "command": "boxxer.openWorkspaceInContainer",
         "title": "Boxxer: Open Folder in Container"
       },
       {

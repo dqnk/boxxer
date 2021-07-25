@@ -58,8 +58,8 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  let openFolderInContainer = vscode.commands.registerCommand(
-    "boxxer.openFolderInContainer",
+  let openWorkspaceInContainer = vscode.commands.registerCommand(
+    "boxxer.openWorkspaceInContainer",
     () => {
       const terminal = vscode.window.createTerminal("Remote Container");
       terminal.show();
@@ -156,7 +156,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(buildContainer);
   context.subscriptions.push(composeBuildContainer);
-  context.subscriptions.push(openFolderInContainer);
+  context.subscriptions.push(openWorkspaceInContainer);
   context.subscriptions.push(buildWithSpecifiedFolder);
   context.subscriptions.push(openShellInContainer);
   context.subscriptions.push(closeCurrentContainer);
