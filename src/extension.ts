@@ -1,9 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import { exec } from "child_process";
+import { Console } from "console";
 import { NONAME } from "dns";
 import * as vscode from "vscode";
-
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -11,9 +11,8 @@ export function activate(context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "boxxer" is now active!');
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
+  //get current worskpace name if the window ever closes
+  //  let currentWorskpace = vscode.workspace.name;
 
   let buildContainer = vscode.commands.registerCommand(
     "boxxer.buildContainer",
@@ -125,6 +124,36 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  // doesn't fully work, but is probably unnecessary either way
+  // requires the currentWorspace=vscode.worskpace.name to be uncommented at the top
+  //  vscode.workspace.onDidChangeWorkspaceFolders(function hello() {
+  //    const { exec } = require("child_process");
+  //    var firstWord;
+  //    exec(
+  //      `docker ps | grep ${currentWorskpace}`,
+  //      (error: any, stdout: any, stderr: any) => {
+  //        if (error) {
+  //          return;
+  //        }
+  //
+  //        //terminal.sendText(`${stderr}`);
+  //
+  //        //gets the first word, which is the container ID
+  //        firstWord = stdout.split(" ")[0];
+  //        //update current workspace
+  //        currentWorskpace = vscode.workspace.name;
+  //        exec(
+  //          `docker stop ${firstWord}`,
+  //          (error: any, stdout: any, stderr: any) => {
+  //            if (error) {
+  //              return;
+  //            }
+  //          }
+  //        );
+  //      }
+  //    );
+  //  });
+
   context.subscriptions.push(buildContainer);
   context.subscriptions.push(composeBuildContainer);
   context.subscriptions.push(openFolderInContainer);
@@ -133,7 +162,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(closeCurrentContainer);
 }
 
-// this method is called when your extension is deactivated
+// this method is called when your extension is deactivated, also when editor is closed
 export function deactivate() {
   const { exec } = require("child_process");
   var firstWord;
