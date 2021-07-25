@@ -130,6 +130,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(openFolderInContainer);
   context.subscriptions.push(buildWithSpecifiedFolder);
   context.subscriptions.push(openShellInContainer);
+  context.subscriptions.push(closeCurrentContainer);
 }
 
 // this method is called when your extension is deactivated
