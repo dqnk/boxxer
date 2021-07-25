@@ -83,10 +83,9 @@ export function activate(context: vscode.ExtensionContext) {
             return;
           }
 
-          //error, if it exists
-          //          terminal.sendText(`${stderr}`);
+          //terminal.sendText(`${stderr}`);
 
-          //regex, which gets the first word, which is the container ID
+          //gets the first word, which is the container ID
           var firstWord = stdout.split(" ")[0];
 
           terminal.sendText(`docker exec -it ${firstWord} /bin/bash`);
