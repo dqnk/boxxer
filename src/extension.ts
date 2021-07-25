@@ -1,5 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+import { exec } from "child_process";
 import { NONAME } from "dns";
 import * as vscode from "vscode";
 
@@ -103,4 +104,28 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+  const { exec } = require("child_process");
+  var firstWord;
+  exec(
+    `docker ps | grep ${vscode.workspace.name}`,
+    (error: any, stdout: any, stderr: any) => {
+      if (error) {
+        return;
+      }
+
+      //terminal.sendText(`${stderr}`);
+
+      //gets the first word, which is the container ID
+      firstWord = stdout.split(" ")[0];
+      exec(
+        `docker stop ${firstWord}`,
+        (error: any, stdout: any, stderr: any) => {
+          if (error) {
+            return;
+          }
+        }
+      );
+    }
+  );
+}
