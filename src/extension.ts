@@ -96,6 +96,35 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  let closeCurrentContainer = vscode.commands.registerCommand(
+    "boxxer.closeCurrentContainer",
+    () => {
+      const { exec } = require("child_process");
+      var firstWord;
+      exec(
+        `docker ps | grep ${vscode.workspace.name}`,
+        (error: any, stdout: any, stderr: any) => {
+          if (error) {
+            return;
+          }
+
+          //terminal.sendText(`${stderr}`);
+
+          //gets the first word, which is the container ID
+          firstWord = stdout.split(" ")[0];
+          exec(
+            `docker stop ${firstWord}`,
+            (error: any, stdout: any, stderr: any) => {
+              if (error) {
+                return;
+              }
+            }
+          );
+        }
+      );
+    }
+  );
+
   context.subscriptions.push(buildContainer);
   context.subscriptions.push(composeBuildContainer);
   context.subscriptions.push(openFolderInContainer);

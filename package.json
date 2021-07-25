@@ -38,6 +38,10 @@
       {
         "command": "boxxer.openShellInContainer",
         "title": "Boxxer: Open Shell in Container"
+      },
+      {
+        "command": "boxxer.closeCurrentContainer",
+        "title": "Boxxer: Close Current Container"
       }
     ]
   },
