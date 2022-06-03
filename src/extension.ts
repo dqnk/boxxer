@@ -123,6 +123,7 @@ export function activate(context: vscode.ExtensionContext) {
       );
     }
   );
+  //using docker cp ./filename CONTAINER_ID:/home/userdir/ for files which are being modified
 
   // doesn't fully work, but is probably unnecessary either way
   // requires the currentWorspace=vscode.worskpace.name to be uncommented at the top
